@@ -66,4 +66,70 @@ describe('Github Service', function () {
 
 	});
 
+	describe('Repos', function () {
+
+		var _githubApi;
+		var httpBackend;
+
+		var repoSearchUrl = 'http://api.github.com/users/danielhutchinson/repos';
+		var repoFindUrl = 'http://api.github.com/users/danielhutchinson/dynamic-component-example';
+
+		beforeEach(angular.mock.module('github'));
+
+		beforeEach(inject(function (githubApi, $httpBackend) {
+			_githubApi = githubApi;
+			httpBackend = $httpBackend;
+		}));
+
+		it('should call the correct url on repos list for a user', function () {
+			httpBackend.expectGET(repoSearchUrl);
+			httpBackend.when('GET', repoSearchUrl).respond(200, {});
+
+			_githubApi.repos.search('danielhutchinson');
+			httpBackend.flush();
+
+			httpBackend.verifyNoOutstandingExpectation();
+     		httpBackend.verifyNoOutstandingRequest();
+		});
+
+		it('should return a list of repos for a user', function () {
+			httpBackend.when('GET', repoSearchUrl).respond(200, repoSearchResults);
+
+			var results;
+			_githubApi.repos.search('danielhutchinson')
+				.then(function (data) {
+					results = data;
+				});
+			httpBackend.flush();
+
+			expect(results[0].id).to.equal(repoSearchResults[0].id);
+			expect(results[1].id).to.equal(repoSearchResults[1].id);
+		});
+		
+		it('should call the correct url on repo find', function () {
+			httpBackend.expectGET(repoFindUrl);
+			httpBackend.when('GET', repoFindUrl).respond(200, {});
+
+			_githubApi.repos.find('danielhutchinson', 'dynamic-component-example');
+			httpBackend.flush();
+
+			httpBackend.verifyNoOutstandingExpectation();
+     		httpBackend.verifyNoOutstandingRequest();
+		});
+		
+		it('should return a single repo on repo find', function () {
+			httpBackend.when('GET', repoFindUrl).respond(200, repoFindResult);
+
+			var result;
+			_githubApi.repos.find('danielhutchinson', 'dynamic-component-example')
+				.then(function (data) {
+					result = data;
+				});
+			httpBackend.flush();
+
+			expect(result.id).to.equal(repoFindResult.id);
+		});
+
+	});
+
 });

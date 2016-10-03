@@ -21,6 +21,16 @@ var githubApi = function($http) {
 		}
 	};
 
+	service.repos = {
+		search: function (username) {
+			return _serverRequest(BASE_URL + 'users/' + username + '/repos');
+		},
+
+		find: function (username, repoName) {
+			return _serverRequest(BASE_URL + 'users/' + username + '/' + repoName);
+		}
+	};
+
 	return service;
 };	
 
