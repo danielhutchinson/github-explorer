@@ -1,0 +1,21 @@
+ul.profile-list li {
+	width: 16.66%;
+	padding: 10px 5px;
+	float: left;
+	transition: background 200ms linear;
+}
+
+ul.profile-list li:hover {
+	background: #f2f2f2;
+	cursor: pointer;
+}
+
+ul.profile-list li .profile-pic, ul.profile-list li img {
+	height: 100px;
+	width: 100px;
+	margin: 0 auto;
+}
+
+ul.profile-list li h5 {
+	text-align: center;
+}

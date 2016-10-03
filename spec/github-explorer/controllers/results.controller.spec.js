@@ -4,7 +4,7 @@ describe('results controller', function () {
 	var rootScope;
 	var location;
 	var controllerConstructor;
-	var mockGithubApi;
+	var mockGithubApi = { users: {}, repos: {} };
 	var q;
 
 	beforeEach(angular.mock.module('github'));
@@ -15,15 +15,15 @@ describe('results controller', function () {
 		scope = $rootScope.$new();
 		rootScope = $rootScope;
 		location = $location;
-		mockGithubApi = sinon.stub({ search: function () { } });
+		mockGithubApi.users = sinon.stub({ search: function () { } });
 		q = $q;
 	}));
 
 	beforeEach(function () {
 		var deferred = q.defer();
 		deferred.resolve(userSearchResults);
-		mockGithubApi.search.returns(deferred.promise);
-		
+		mockGithubApi.users.search.returns(deferred.promise);
+
 		location.search('q', 'daniel');
 
 		controllerConstructor('ResultsController', { $scope: scope, $location: location, githubApi: mockGithubApi });
@@ -36,7 +36,7 @@ describe('results controller', function () {
 	});
 
 	it('should use the search query from the URL when retrieving data from the server', function () {
-		expect(mockGithubApi.search.calledWith(location.search().q)).to.equal(true);
+		expect(mockGithubApi.users.search.calledWith(location.search().q)).to.equal(true);
 	});
 
 });

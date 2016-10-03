@@ -1,0 +1,16 @@
+
+
+<ul ng-repeat="result in results.items" class="list-unstyled profile-list">
+	<li>
+		<div class="inner">
+			<div class="profile-pic">
+				<img ng-src="{{result.avatar_url}}" class="img-circle" />
+			</div>
+			<h5>
+				{{result.login}}<br />
+				<small class="text-muted">{{result.name}}</small>
+			</h5>	
+		</div>
+		
+	</li>
+</ul>

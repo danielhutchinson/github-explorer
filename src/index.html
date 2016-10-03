@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="githubExplorer">
+<head>
+	<meta charset="UTF-8">
+	<title>Github Explorer</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+	<header class="container">
+		<h1>GitHub Explorer</h1>
+	</div>
+
+	<section class="container" ng-controller="SearchController">
+		<div class="row">
+			<form class="search-form" ng-submit="search()">
+				<div class="input-group custom-search-form">
+					<input type="text" class="form-control" ng-model="query">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<div class="container">
+		<div class="row">
+			<ng-view />
+		</div>
+	</div>
+	
+	<footer class="container">
+		<div class="row">
+			<small class="text-muted">&hearts; @danwhutchinson | data from <a href="http://api.github.com">http://api.github.com</a></small>
+		</div>
+	</footer>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+
+	<script src="./app/github-explorer/app.js"></script>
+	<script src="./app/github/services/github.service.js"></script>
+	<script src="./app/github-explorer/controllers/search.controller.js"></script>
+	<script src="./app/github-explorer/controllers/results.controller.js"></script>
+</body>
+</html>
