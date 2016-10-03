@@ -1,3 +1,7 @@
+.row {
+	margin: 10px 0;
+}
+
 ul.profile-list li {
 	width: 16.66%;
 	padding: 10px 5px;
