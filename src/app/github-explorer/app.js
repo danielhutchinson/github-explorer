@@ -7,6 +7,9 @@ module.config(function ($routeProvider) {
 			templateUrl: './app/github-explorer/templates/results.html',
 			controller: 'ResultsController'
 		})
+		.when('/users/:username', {
+			templateUrl: './app/github-explorer/templates/user.html',
+			controller: 'UserController'
+		})
 		.otherwise({ redirectTo: '/' });
-
 });

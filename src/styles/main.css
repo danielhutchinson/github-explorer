@@ -2,24 +2,30 @@
 	margin: 10px 0;
 }
 
-ul.profile-list li {
+ul.profile-list a {
 	width: 16.66%;
 	padding: 10px 5px;
 	float: left;
+	text-decoration: none;
 	transition: background 200ms linear;
 }
 
-ul.profile-list li:hover {
+ul.profile-list a:hover {
 	background: #f2f2f2;
 	cursor: pointer;
 }
 
-ul.profile-list li .profile-pic, ul.profile-list li img {
+ul.profile-list a .profile-pic, ul.profile-list a img {
 	height: 100px;
 	width: 100px;
 	margin: 0 auto;
 }
 
-ul.profile-list li h5 {
+ul.profile-list a h5 {
 	text-align: center;
+}
+
+
+.profile-usermenu li a i { 
+	margin-right: 5px;
 }
