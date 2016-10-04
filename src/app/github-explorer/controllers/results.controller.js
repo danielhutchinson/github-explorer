@@ -6,7 +6,6 @@ var resultsController = function ($scope, $location, githubApi) {
 	githubApi.users.search($location.search().q)
 		.then(function (data) {
 			$scope.results = data;
-			console.log(data);
 		});
 };
 
